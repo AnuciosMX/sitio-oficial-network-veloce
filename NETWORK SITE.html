@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Veloce Enterprise | Global Software Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- CONFIGURACIÓN CORPORATIVA --- */
+        :root {
+            --bg-base: #020204;
+            --bg-surface: #06070a;
+            --bg-card: #0b0d14;
+            --neon-alpha: #00f0ff; 
+            --neon-beta: #7000ff;  
+            --neon-gamma: #ff0055; 
+            --text-main: #f1f5f9;
+            --text-muted: #475569;
+            --font-display: 'Orbitron', sans-serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
+            --radio-redondeado: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            user-select: none;
+        }
+
+        input, textarea, select {
+            user-select: text !important;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; cursor: pointer; }
+        ul { list-style: none; }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* --- FONDO DE RED NEURONAL 3D --- */
+        #canvas-particulas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        /* --- CONTENEDOR SERPIENTE (FLUIDO & ULTRA HD) --- */
+        .contenedor-serpiente {
+            position: relative;
+            background: rgba(11, 13, 20, 0.9);
+            border-radius: var(--radio-redondeado);
+            z-index: 1;
+            height: 100%;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            padding: 1.5px; /* Borde más fino y nítido */
+            transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), box-shadow 0.3s ease;
+        }
+        
+        .contenedor-serpiente:hover {
+            transform: scale(1.025) translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2), 0 0 30px rgba(112, 0, 255, 0.15);
+            filter: brightness(1.15);
+        }
+        
+        /* Animación ultra fluida de la serpiente neón */
+        .contenedor-serpiente::before {
+            content: '';
+            position: absolute;
+            top: -60%; left: -60%; width: 220%; height: 220%;
+            background: conic-gradient(transparent, var(--neon-alpha), transparent 30%, var(--neon-beta), transparent 60%, var(--neon-gamma), transparent 90%);
+            animation: rotacionFluidaSerpiente 4s linear infinite; /* Más rápido y continuo para fluidez */
+            z-index: -2;
+            will-change: transform;
+        }
+
+        .capa-interna {
+            background: var(--bg-card);
+            border-radius: calc(var(--radio-redondeado) - 1.5px);
+            padding: 35px 25px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @keyframes rotacionFluidaSerpiente {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }   
+        }
+
+        /* --- EFECTO GLITCH PARA NETWORK VELOCE --- */
+        .brand-logo { 
+            font-family: var(--font-display); 
+            font-size: 1.25rem; 
+            font-weight: 900; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .brand-logo i { color: var(--neon-alpha); font-size: 1.4rem; text-shadow: 0 0 10px var(--neon-alpha); }
+        
+        .texto-glitch {
+            position: relative;
+            color: var(--text-main);
+            animation: glitchEfecto 3.5s infinite;
+        }
+        .texto-glitch span { color: var(--neon-alpha); }
+
+        .texto-glitch::before, .texto-glitch::after {
+            content: 'NETWORK VELOCE';
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-base); overflow: hidden; clip: rect(0,0,0,0);
+        }
+        .texto-glitch::before {
+            left: 2px; text-shadow: -1px 0 var(--neon-gamma);
+            animation: glitchLinea1 2.5s infinite linear alternate-reverse;
+        }
+        .texto-glitch::after {
+            left: -2px; text-shadow: -1px 0 var(--neon-alpha);
+            animation: glitchLinea2 2s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitchEfecto {
+            0%, 95%, 100% { transform: skew(0deg); }
+            96% { transform: skew(-3deg); }
+            97% { transform: skew(3deg); }
+            98% { transform: skew(-1deg); }
+            99% { transform: skew(2deg); }
+        }
+        @keyframes glitchLinea1 {
+            0% { clip: rect(10px, 9999px, 15px, 0); }
+            100% { clip: rect(40px, 9999px, 42px, 0); }
+        }
+        @keyframes glitchLinea2 {
+            0% { clip: rect(25px, 9999px, 30px, 0); }
+            100% { clip: rect(5px, 9999px, 8px, 0); }
+        }
+
+        /* --- BOTONES PREMIUM 3D HD --- */
+        .btn-premium {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 30px;
+            background: linear-gradient(180deg, #8b22ff 0%, #5000cc 100%); color: #fff;
+            font-family: var(--font-display); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;
+            border: none; border-radius: 50px; cursor: pointer; transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+            position: relative;
+            box-shadow: 0 5px 0 #3a0099, 0 10px 20px rgba(112, 0, 255, 0.35);
+        }
+        .btn-premium:active {
+            transform: translateY(4px);
+            box-shadow: 0 1px 0 #3a0099, 0 5px 10px rgba(112, 0, 255, 0.2);
+        }
+        .btn-premium:hover { filter: brightness(1.15); }
+
+        .btn-contacto-3d {
+            background: linear-gradient(180deg, #2ae876 0%, #1aa653 100%);
+            box-shadow: 0 4px 0 #117339, 0 8px 15px rgba(37, 211, 102, 0.25);
+        }
+        .btn-contacto-3d:active { box-shadow: 0 1px 0 #117339, 0 3px 8px rgba(37, 211, 102, 0.15); }
+
+        .btn-correo-3d {
+            background: linear-gradient(180deg, #00f0ff 0%, #00a2cc 100%);
+            box-shadow: 0 4px 0 #006b85, 0 8px 15px rgba(0, 240, 255, 0.25);
+        }
+        .btn-correo-3d:active { box-shadow: 0 1px 0 #006b85, 0 3px 8px rgba(0, 240, 255, 0.15); }
+
+        .btn-download-3d {
+            background: linear-gradient(180deg, #ff0055 0%, #b3003b 100%);
+            box-shadow: 0 4px 0 #80002a, 0 8px 15px rgba(255, 0, 85, 0.25);
+        }
+        .btn-download-3d:active { box-shadow: 0 1px 0 #80002a, 0 3px 8px rgba(255, 0, 85, 0.15); }
+
+        /* --- IMÁGENES DE SERVICIOS --- */
+        .preview-servicio-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(2, 2, 4, 0.85); backdrop-filter: blur(25px);
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; height: 85px; }
+        .nav-lista { display: flex; gap: 16px; }
+        .link-corporativo {
+            font-size: 0.72rem; font-weight: 500; color: #94a3b8;
+            text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .link-corporativo:hover { color: var(--neon-alpha); }
+        .hamburguesa { display: none; font-size: 1.4rem; cursor: pointer; color: var(--text-main); }
+
+        /* --- 1. SECCIÓN TERMINAL (HERO) --- */
+        #inicio {
+            min-height: 100vh; display: flex; align-items: center; padding-top: 85px; position: relative;
+            background: radial-gradient(circle at 80% 40%, rgba(112, 0, 255, 0.08), transparent 50%);
+        }
+        .hero-estructura { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+        .hero-tag { display: inline-block; font-family: var(--font-display); color: var(--neon-alpha); font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 16px; text-transform: uppercase; }
+        .hero-estructura h1 { font-family: var(--font-display); font-size: 3.6rem; line-height: 1.15; margin-bottom: 24px; font-weight: 900; }
+        .hero-estructura p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 35px; max-width: 620px; }
+        
+        .badge-creador {
+            background: rgba(11, 13, 20, 0.6); border: 1px solid rgba(255,255,255,0.03);
+            border-radius: var(--radio-redondeado); padding: 35px; text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .foto-perfil-reemplazo {
+            width: 100px; height: 100px; border-radius: 50%;
+            border: 2px solid var(--neon-alpha); box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            margin-bottom: 20px; background: radial-gradient(circle, #0b0d14 0%, #020204 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .foto-perfil-reemplazo i {
+            font-size: 2.5rem; color: var(--neon-alpha); text-shadow: 0 0 10px var(--neon-alpha);
+        }
+        .badge-creador h3 { font-family: var(--font-display); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+
+        /* SECCIONES TITULARES GENERALES */
+        .seccion-header { text-align: center; margin-bottom: 60px; }
+        .seccion-header p { color: var(--neon-alpha); font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+        .seccion-header h2 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 800; }
+        .seccion-header h2 span { color: var(--neon-alpha); text-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+
+        /* --- 2. SECCIÓN SOLICITAR --- */
+        #contacto { padding: 120px 0; background: radial-gradient(circle at 50% 50%, rgba(112, 0, 255, 0.04), transparent 60%); }
+        .contacto-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: start; }
+        .caja-enlace-directo { display: flex; flex-direction: column; gap: 15px; align-items: flex-start; margin-top: 20px; }
+        .bloque-canal { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+        .bloque-canal h5 { font-family: var(--font-display); font-size: 0.9rem; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .bloque-canal h5 i { color: var(--neon-alpha); }
+        .bloque-canal p { font-size: 0.85rem; color: #64748b; }
+
+        .campo-grupo { margin-bottom: 18px; }
+        .campo-grupo label { display: block; font-family: var(--font-display); font-size: 0.75rem; margin-bottom: 6px; color: #64748b; letter-spacing: 1px; text-transform: uppercase; }
+        
+        .entrada-texto, .desplegable-corporativo {
+            width: 100%; background: var(--bg-base); border: 1px solid rgba(255,255,255,0.06);
+            padding: 14px; color: #fff; border-radius: 50px; font-family: var(--font-sans); font-size: 0.9rem; text-indent: 10px;
+            transition: all 0.3s ease; appearance: none;
+        }
+        .desplegable-corporativo {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300f0ff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: calc(100% - 20px) center; background-size: 18px;
+            cursor: pointer;
+        }
+        .desplegable-corporativo option { background-color: var(--bg-card); color: #fff; }
+        .entrada-texto:focus, .desplegable-corporativo:focus { outline: none; border-color: var(--neon-alpha); box-shadow: 0 0 12px rgba(0, 240, 255, 0.15); }
+
+        .contenedor-switch-modo {
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.08);
+            padding: 12px 18px; border-radius: 50px; margin-bottom: 20px;
+        }
+        .contenedor-switch-modo span { font-family: var(--font-display); font-size: 0.75rem; color: #94a3b8; letter-spacing: 1px; }
+        .control-switch { position: relative; display: inline-block; width: 46px; height: 24px; }
+        .control-switch input { opacity: 0; width: 0; height: 0; }
+        .slider-switch {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #222; transition: .3s; border-radius: 34px; border: 1px solid #444;
+        }
+        .slider-switch:before {
+            position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px;
+            background-color: #64748b; transition: .3s; border-radius: 50%;
+        }
+        input:checked + .slider-switch { background-color: rgba(112,0,255,0.2); border-color: var(--neon-beta); }
+        input:checked + .slider-switch:before { transform: translateX(22px); background-color: var(--neon-alpha); }
+
+        .modulo-dinamico { display: none; }
+        .modulo-dinamico.activo { display: block; animation: aparicionSuave 0.4s ease forwards; }
+
+        @keyframes aparicionSuave {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .politicas-consenso { display: flex; gap: 10px; font-size: 0.75rem; color: #64748b; margin-bottom: 20px; line-height: 1.4; align-items: flex-start; }
+        .politicas-consenso input { margin-top: 2px; cursor: pointer; }
+        .politicas-consenso a { color: var(--neon-alpha); text-decoration: underline; }
+
+        /* --- 3. SECCIÓN PLANES --- */
+        #planes { padding: 120px 0; background: var(--bg-surface); }
+        .planes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .plan-encabezado h4 { font-family: var(--font-display); font-size: 1.1rem; color: #fff; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        .plan-precio { font-family: var(--font-display); font-size: 1.5rem; color: var(--neon-alpha); font-weight: 900; margin-bottom: 20px; }
+        .plan-caracteristicas { margin-bottom: 30px; }
+        .plan-caracteristicas li { font-size: 0.85rem; color: #94a3b8; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .lista-check-icono { width: 18px; height: 18px; background: rgba(0, 240, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; shrink: 0; }
+        .lista-check-icono i { color: var(--neon-alpha); font-size: 0.65rem; }
+
+        /* --- 4. SECCIÓN INGENIERÍA --- */
+        #soluciones { padding: 120px 0; }
+        .soluciones-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+        .contenedor-icono-redondo { width: 54px; height: 54px; background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .contenedor-icono-redondo i { font-size: 1.4rem; color: var(--neon-alpha); }
+        .tarjeta-info h3 { font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 12px; font-weight: 800; color: #fff; }
+        .tarjeta-info p { color: #94a3b8; font-size: 0.9rem; }
+
+        /* --- 5. SECCIÓN WEB APPS (DESCARGAS) --- */
+        #descargas { padding: 120px 0; background: #040508; border-top: 1px solid rgba(255,255,255,0.02); }
+        .descargas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; }
+        .tarjeta-descarga h3 { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 10px; color: #fff; display: flex; align-items: center; gap: 12px; }
+        .tarjeta-descarga h3 i { color: var(--neon-gamma); }
+        .tarjeta-descarga p { color: #64748b; font-size: 0.85rem; margin-bottom: 20px; }
+
+        /* --- 6. SECCIÓN COMUNIDAD (REDES) --- */
+        #redes-oficiales { padding: 120px 0; background: var(--bg-surface); border-top: 1px solid rgba(255,255,255,0.02); }
+        .redes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .tarjeta-red { padding: 25px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .tarjeta-red i { font-size: 2rem; margin-bottom: 12px; }
+        .icono-yt { color: #ff0000; text-shadow: 0 0 15px rgba(255,0,0,0.3); }
+        .icono-tk { color: #00f2fe; text-shadow: 0 0 15px rgba(0,242,254,0.3); }
+        .icono-tg { color: #0088cc; text-shadow: 0 0 15px rgba(0,136,208,0.3); }
+        .tarjeta-red h4 { font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 6px; }
+        .tarjeta-red p { font-size: 0.8rem; color: #64748b; margin-bottom: 15px; min-height: 45px; }
+        
+        /* BOTONES DE SEGUIR ULTRA ULTRA PEQUEÑOS Y FINOS SÓLO TEXTO */
+        .btn-red-reducido { 
+            padding: 6px 14px !important; 
+            font-size: 0.65rem !important; 
+            font-weight: 800 !important;
+            box-shadow: 0 2px 0 rgba(0,0,0,0.4) !important;
+            border-radius: 30px !important;
+            letter-spacing: 0.5px;
+            min-height: auto !important;
+            width: auto !important;
+        }
+
+        /* --- 7. SECCIÓN CORPORATIVO (LEGAL) --- */
+        #legal { padding: 100px 0; background: var(--bg-base); border-top: 1px solid rgba(255,255,255,0.02); }
+        .legal-estructura { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        
+        .columna-legal h4 { 
+            font-family: var(--font-display); color: #fff; margin-bottom: 12px; font-size: 0.95rem; 
+            text-transform: uppercase; display: flex; align-items: center; justify-content: space-between; 
+            background: rgba(255,255,255,0.01); padding: 14px 20px; border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.03); cursor: pointer; transition: all 0.3s;
+        }
+        .columna-legal h4:hover { background: rgba(0, 240, 255, 0.04); border-color: var(--neon-alpha); }
+        .columna-legal h4 div { display: flex; align-items: center; gap: 10px; }
+        .columna-legal h4 i.icono-principal { color: var(--neon-alpha); }
+        .columna-legal h4 i.flecha-toggle { font-size: 0.8rem; transition: transform 0.3s ease; color: #64748b; }
+        
+        .columna-legal.activo h4 i.flecha-toggle { transform: rotate(180deg); color: var(--neon-alpha); }
+
+        .texto-legal-desplegable { 
+            max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+            padding: 0 20px; border-left: 2px solid transparent; margin-top: 0;
+        }
+        .columna-legal.activo .texto-legal-desplegable {
+            max-height: 400px; padding-top: 15px; padding-bottom: 15px;
+            border-color: var(--neon-alpha); background: rgba(11, 13, 20, 0.4); border-radius: 0 0 10px 10px;
+        }
+        .texto-legal-desplegable p { text-align: justify; font-size: 0.85rem; color: #94a3b8; line-height: 1.7; }
+
+        /* --- FOOTER --- */
+        footer { background: #020204; padding: 40px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.02); font-size: 0.85rem; color: #64748b; }
+        footer span { color: var(--neon-alpha); font-family: var(--font-display); }
+
+        @media (max-width: 992px) {
+            .hero-estructura, .contacto-grid { grid-template-columns: 1fr; gap: 45px; }
+            .hero-estructura h1 { font-size: 2.3rem; }
+            .hamburguesa { display: block; }
+            .nav-lista {
+                position: fixed; top: 85px; left: -100%; width: 100%; height: calc(100vh - 85px); background: rgba(2,2,4,0.98);
+                backdrop-filter: blur(20px); flex-direction: column; padding: 40px; gap: 32px; transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); 
+                border-bottom: 1px solid rgba(255,255,255,0.05); overflow-y: auto;
+            }
+            .nav-lista.abierto { left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-particulas"></canvas>
+
+    <header>
+        <div class="contenedor nav-wrapper">
+            <div class="brand-logo">
+                <i class="fa-solid fa-cubes-stacked"></i> 
+                <div class="texto-glitch">NETWORK <span>VELOCE</span></div>
+            </div>
+            <i class="fa-solid fa-bars-staggered hamburguesa" id="menu-icono"></i>
+            <nav>
+                <ul class="nav-lista" id="nav-modulos">
+                    <li><a href="#inicio" class="link-corporativo"><i class="fa-solid fa-terminal"></i> Terminal</a></li>
+                    <li><a href="#contacto" class="link-corporativo"><i class="fa-solid fa-address-card"></i> Solicitar</a></li>
+                    <li><a href="#planes" class="link-corporativo"><i class="fa-solid fa-layer-group"></i> Planes</a></li>
+                    <li><a href="#soluciones" class="link-corporativo"><i class="fa-solid fa-gears"></i> Ingeniería</a></li>
+                    <li><a href="#descargas" class="link-corporativo"><i class="fa-solid fa-download"></i> Web Apps</a></li>
+                    <li><a href="#redes-oficiales" class="link-corporativo"><i class="fa-solid fa-share-nodes"></i> Comunidad</a></li>
+                    <li><a href="#legal" class="link-corporativo"><i class="fa-solid fa-scale-balanced"></i> Corporativo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio">
+        <div class="contenedor hero-estructura">
+            <div>
+                <span class="hero-tag">⚡ Enterprise Architecture</span>
+                <h1>Sistemas y Desarrollos de web internacional</h1>
+                <p>Especialistas en la creación y despliegue de infraestructuras de código de alta velocidad. Maximizamos el rendimiento corporativo a través de aplicaciones de élite adaptadas a tu hardware.</p>
+                <a href="#contacto" class="btn-premium">SOLICITAR<i class="fa-solid fa-sliders"></i></a>
+            </div>
+            <div class="badge-creador">
+                <div class="foto-perfil-reemplazo">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <h3>Creador Web Autorizado</h3>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">Garantía de Código Estricto por Christian A.RAMOS.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="contenedor">
+            <div class="seccion-header">
+                <p>has de tu negocio un sitio web completo</p>
+                <h2>Solicitar <span>Servicios</span></h2>
+            </div>
+            <div class="contacto-grid">
+                
+                <div class="canales-seguros">
+                    <h3>🔒 SOLICITA INFORMACION </h3>
+                    <p>Si prefiere realizar una consulta abierta inmediata, use los módulos de canal directo via WhatsApp o Correo</p>
+                    
+                    <div class="caja-enlace-directo">
+                        <div class="contenedor-serpiente" style="width: 100%;">
+                            <div class="capa-interna bloque-canal">
+                                <h5><i class="fa-brands fa-whatsapp"></i> WhatsApp OFICIAL</h5>
+                                <p>comunicación privada cifrada.</p>
+                                <a href="#" class="btn-premium btn-contacto-3d enlace-whatsapp-global" target="_blank">
+                                    <i class="fa-solid fa-comment-dots"></i> Solicitar Información 
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contenedor-serpiente" style="width: 100%;">
+                            <div class="capa-interna bloque-canal">
+                                <h5><i class="fa-solid fa-envelope"></i> Correo Electrónico</h5>
+                                <p> contractuales y firmas técnicas.</p>
+                                <a href="#" class="btn-premium btn-correo-3d enlace-correo-global">
+                                    <i class="fa-solid fa-paper-plane"></i> Pedir Información
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contenedor-serpiente">
+                    <form class="capa-interna formulario-b2b" onsubmit="enviarDatosAWhatsApp(event)">
+                        <div class="campo-grupo">
+                            <label><i class="fa-solid fa-user-tie"></i> Nombre Completo del Cliente</label>
+                            <input type="text" id="nombre-cliente" class="entrada-texto" required placeholder="Ej. Ing. Christian A Ramos">
+                        </div>
+
+                        <div class="contenedor-switch-modo">
+                            <span>Modo de Entrada Personalizado</span>
+                            <label class="control-switch">
+                                <input type="checkbox" id="switch-modo-manual" onchange="alternarModoFormulario()">
+                                <span class="slider-switch"></span>
+                            </label>
+                        </div>
+
+                        <div id="modulo-automatico" class="modulo-dinamico activo">
+                            <div class="campo-grupo">
+                                <label><i class="fa-solid fa-cubes"></i> Infraestructura de Software Requerida</label>
+                                <select id="servicio-arquitectura" class="desplegable-corporativo">
+                                    <option value="Solo Plataforma Web Corporativa">Solo Plataforma Web Corporativa</option>
+                                    <option value="Solo Aplicación Móvil Nativa">Solo Aplicación Móvil Nativa</option>
+                                    <option value="Creación de Apps Fake Lag + Anti-Ban (Free Fire)">Creación de Apps Fake Lag + Anti-Ban (Free Fire)</option>
+                                    <option value="Infraestructura Híbrida Completa (Web + Móvil + Optimizadores)">fake lag optimizado sin ban</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="modulo-manual" class="modulo-dinamico">
+                            <div class="campo-grupo">
+                                <label><i class="fa-solid fa-pen-to-square"></i> Especificaciones del Servicio Requerido</label>
+                                <textarea id="servicio-manual-texto" class="entrada-texto" rows="3" style="resize: none; border-radius: 15px;" placeholder="Escriba explícitamente el desarrollo que necesita que programemos..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="politicas-consenso">
+                            <input type="checkbox" id="consenso-legal" required>
+                            <label for="consenso-legal">Acepto la totalidad de los <a href="#legal">Términos de Servicio</a> y las <a href="#legal">Políticas de Privacidad</a> globales de la empresa.</label>
+                        </div>
+
+                        <button type="submit" class="btn-premium" style="width: 100%;"><i class="fa-brands fa-whatsapp"></i> ACEPTAR </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="planes">
+        <div class="contenedor">
+            <div class="seccion-header">
+                <p>Estructura Comercial</p>
+                <h2>Modelos y <span>Planes de Distribución</span></h2>
+            </div>
+            <div class="planes-grid">
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-plan">
+                        <div class="plan-encabezado">
+                            <h4>Básico</h4>
+                            <div class="plan-precio">Esencial Tech</div>
+                        </div>
+                        <ul class="plan-caracteristicas">
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Consultoría Técnica Inicial</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Desarrollo Web Corporativo Base</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Optimización Estándar de Sistema</li>
+                        </ul>
+                        <button onclick="solicitarPlanWhatsApp('Esencial Tech (Básico)')" class="btn-premium" style="width:100%;">Configurar Solución</button>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-plan">
+                        <div class="plan-encabezado">
+                            <h4>Avanzado</h4>
+                            <div class="plan-precio">Veloce Pro</div>
+                        </div>
+                        <ul class="plan-caracteristicas">
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Arquitectura Web + App Móvil Base</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Reducción Avanzada de Latencia</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Scripts y Automatizaciones a Medida</li>
+                        </ul>
+                        <button onclick="solicitarPlanWhatsApp('Veloce Pro (Avanzado)')" class="btn-premium" style="width:100%;">Configurar Solución</button>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-plan">
+                        <div class="plan-encabezado">
+                            <h4>Gamer Lite</h4>
+                            <div class="plan-precio">Bypass Core (FF)</div>
+                        </div>
+                        <ul class="plan-caracteristicas">
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Estructura Fake Lag Variable (50-180ms)</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Inyección Básica por Archivos OBB</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Protección Anti-Ban por Parcheo Local</li>
+                        </ul>
+                        <button onclick="solicitarPlanWhatsApp('Bypass Core (Gamer Lite FF)')" class="btn-premium" style="width:100%;">Configurar Solución</button>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-plan">
+                        <div class="plan-encabezado">
+                            <h4>Elite Gamer</h4>
+                            <div class="plan-precio">Veloce Brutal (FF)</div>
+                        </div>
+                        <ul class="plan-caracteristicas">
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Panel Inyector APK Mod con Anti-Ban</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Fake Lag Automatizado por Ticks de Red</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Limpieza de Logs y Bypass de Reportes</li>
+                        </ul>
+                        <button onclick="solicitarPlanWhatsApp('Veloce Brutal (Elite Gamer FF)')" class="btn-premium" style="width:100%;">Configurar Solución</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="soluciones">
+        <div class="contenedor">
+            <div class="seccion-header">
+                <p>Catálogo Operativo Avanzado</p>
+                <h2>Módulos de Desarrollo e <span>Inyección de Red</span></h2>
+            </div>
+            <div class="soluciones-grid">
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-info">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Websites" class="preview-servicio-img">
+                        <div class="contenedor-icono-redondo"><i class="fa-solid fa-globe"></i></div>
+                        <h3>Páginas Web Corporativas</h3>
+                        <p>Diseños responsivos integrados con micro-optimizaciones logísticas de carga y posicionamiento SEO avanzado de estructura limpia.</p>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-info">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80" alt="Mobile Apps" class="preview-servicio-img">
+                        <div class="contenedor-icono-redondo"><i class="fa-solid fa-mobile-screen"></i></div>
+                        <h3>Aplicaciones Móviles Nativas</h3>
+                        <p>Desarrollo enfocado en flujos transaccionales óptimos, escalamiento cloud y lógicas de backend robustas para entornos iOS y Android.</p>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-info">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80" alt="Gaming Network" class="preview-servicio-img">
+                        <div class="contenedor-icono-redondo"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>Desincronización Fake Lag (FF)</h3>
+                        <p>Lógica de red orientada a la manipulación de ticks de paquetes UDP enviados al servidor, simulando latencia artificial controlada e indetectable.</p>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-info">
+                        <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=400&q=80" alt="Security Security" class="preview-servicio-img">
+                        <div class="contenedor-icono-redondo"><i class="fa-solid fa-user-shield"></i></div>
+                        <h3>Módulos Criptográficos Anti-Ban</h3>
+                        <p>Despliegue de scripts con bypass de firmas digitales y emulación de memoria en tiempo de ejecución para evitar detecciones heurísticas del motor del juego.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="descargas">
+        <div class="contenedor">
+            <div class="seccion-header">
+                <p>Fake lag gratis de prueba </p>
+                <h2>Descarga e <span>Instala y Prueba </span></h2>
+            </div>
+            <div class="descargas-grid">
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-descarga">
+                        <div>
+                            <h3><i class="fa-solid fa-box-archive"></i> NUESTRA APP ESTA EN DESARROLLO</h3>
+                            <p>Acceso al paquete compilado de Web Apps corporativas, paneles optimizadores y scripts de depuración de rendimiento.</p>
+                        </div>
+                        <a href="https://www.mediafire.com/folder/rkgh8o43xm88n/Network+web+site" class="btn-premium btn-download-3d" target="_blank">
+                            <i class="fa-solid fa-cloud-arrow-down"></i> DONWLOAD 
+                        </a>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-descarga">
+                        <div>
+                            <h3><i class="fa-solid fa-gamepad"></i> FAKE LAG GRATIS DE PRUEBA</h3>
+                            <p>Descarga del inyector apk modificado optimizado para Free Fire, configuraciones fake lag avanzadas y scripts bypass optimizados DE PRUEBA TEST.</p>
+                        </div>
+                        <a href="https://linktr.ee/xMclovinMods?utm_source=linktree_profile_share&ltsid=865ad72a-e5ef-4b0c-beec-6baee452ed92" class="btn-premium btn-download-3d" target="_blank">
+                            <i class="fa-solid fa-gamepad"></i> DONWLOAD
+                        </a>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="redes-oficiales">
+        <div class="contenedor">
+            <div class="seccion-header">
+                <p>CANALES OFICIALES </p>
+                <h2>Comunidad &<span>Redes Oficiales</span></h2>
+            </div>
+            <div class="redes-grid">
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-red">
+                        <i class="fa-brands fa-telegram icono-tg"></i>
+                        <h4>Telegram Oficial</h4>
+                        <p>Únete para soporte exclusivo y configuraciones de red directas.</p>
+                        <a href="https://t.me/+3MQ7fkTJPn5mNDZh" class="btn-premium btn-red-reducido" style="background: linear-gradient(180deg, #0088cc 0%, #006699 100%); box-shadow: 0 2px 0 #004466;" target="_blank">
+                            Unirse
+                        </a>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-red">
+                        <i class="fa-brands fa-tiktok icono-tk"></i>
+                        <h4>TikTok oficial</h4>
+                        <p>Sigue la pagina.</p>
+                        <a href="https://www.tiktok.com/@cris.floow?_r=1&_t=ZS-97s77VlN21p" class="btn-premium btn-red-reducido" style="background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%); box-shadow: 0 2px 0 #00a2cc; color: #000;" target="_blank">
+                            Seguir
+                        </a>
+                    </div>
+                </div>
+                <div class="contenedor-serpiente">
+                    <div class="capa-interna tarjeta-red">
+                        <i class="fa-brands fa-youtube icono-yt"></i>
+                        <h4>YouTube Oficial</h4>
+                        <p>Video tutoriales de inyección estructural y guías de código.</p>
+                        <a href="https://youtube.com/@xmclovin7049?si=ctdVN467k7Pwf3of" class="btn-premium btn-red-reducido" style="background: linear-gradient(180deg, #ff0000 0%, #cc0000 100%); box-shadow: 0 2px 0 #990000;" target="_blank">
+                            suscribirse
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="legal">
+        <div class="contenedor">
+            <div class="legal-estructura">
+                
+                <div class="columna-legal" onclick="toggleAcordeonLegal(this)">
+                    <h4>
+                        <div><i class="fa-solid fa-scroll icono-principal"></i> terminos y condiciones </div>
+                        <i class="fa-solid fa-chevron-down flecha-toggle"></i>
+                    </h4>
+                    <div class="texto-legal-desplegable">
+                        <p>El uso de la infraestructura lógica provista por <strong>Network Veloce</strong> implica la adhesión irrestricta a nuestras cláusulas de distribución de software de alto nivel. Queda estrictamente prohibida la redistribución, compilación inversa o comercialización de cualquier segmento de código sin la previa autorización firmada por el Creador Web Autorizado de la firma.</p>
+                    </div>
+                </div>
+
+                <div class="columna-legal" onclick="toggleAcordeonLegal(this)">
+                    <h4>
+                        <div><i class="fa-solid fa-shield-halved icono-principal"></i> Políticas de Privacidad</div>
+                        <i class="fa-solid fa-chevron-down flecha-toggle"></i>
+                    </h4>
+                    <div class="texto-legal-desplegable">
+                        <p>En estricto cumplimiento con las normas internacionales de protección de datos informáticos, garantizamos que toda la información enviada mediante nuestros canales estructurados permanezca en absoluta confidencialidad. Los detalles de infraestructura, requisitos de hardware o scripts de red solicitados no son indexados en servidores públicos.</p>
+                    </div>
+                </div>
+
+                <div class="columna-legal" onclick="toggleAcordeonLegal(this)">
+                    <h4>
+                        <div><i class="fa-solid fa-address-book icono-principal"></i> Canales de Verificación</div>
+                        <i class="fa-solid fa-chevron-down flecha-toggle"></i>
+                    </h4>
+                    <div class="texto-legal-desplegable">
+                        <p>Para revisiones de acuerdos de confidencialidad de datos (NDA), escalamiento inmediato de proyectos críticos o consultas directas de desarrollo, puede abrir accesos rápidos de respaldo de inmediato:</p>
+                        <div style="display: flex; gap: 16px; margin-top: 15px;">
+                            <a href="#" class="btn-premium btn-contacto-3d enlace-whatsapp-global" target="_blank" style="padding: 10px 20px;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                            <a href="#" class="btn-premium btn-correo-3d enlace-correo-global" style="padding: 10px 20px;"><i class="fa-solid fa-envelope"></i> Correo</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contenedor">
+            <p>&copy; 2026 <span>Network Veloce</span> Enterprise. Todos los derechos reservados. Arquitectura y Supervisión Técnica por el Creador Web Autorizado <span>BY Christian A. RAMOS.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- MOTOR CANVAS: RED NEURONAL ---
+        const canvas = document.getElementById('canvas-particulas');
+        const ctx = canvas.getContext('2d');
+        let particulas = [];
+        const maxDistancia = 120;
+
+        function redimensionarCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', redimensionarCanvas);
+        redimensionarCanvas();
+
+        class Particula {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.radio = Math.random() * 2 + 1;
+            }
+            actualizar() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            dibujar() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.radio, 0, Math.PI * 2);
+                ctx.fillStyle = '#00f0ff'; ctx.fill();
+            }
+        }
+
+        function inicializarRed() {
+            particulas = [];
+            let cantidad = Math.min(Math.floor((canvas.width * canvas.height) / 9000), 100);
+            for (let i = 0; i < cantidad; i++) particulas.push(new Particula());
+        }
+        inicializarRed();
+
+        function animarRed() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particulas.length; i++) {
+                particulas[i].actualizar(); particulas[i].dibujar();
+                for (let j = i + 1; j < particulas.length; j++) {
+                    const dx = particulas[i].x - particulas[j].x;
+                    const dy = particulas[i].y - particulas[j].y;
+                    const distancia = Math.sqrt(dx * dx + dy * dy);
+                    if (distancia < maxDistancia) {
+                        ctx.beginPath(); ctx.moveTo(particulas[i].x, particulas[i].y);
+                        ctx.lineTo(particulas[j].x, particles = particulas[j].y);
+                        ctx.strokeStyle = `rgba(0, 240, 255, ${1 - (distancia / maxDistancia)})`;
+                        ctx.lineWidth = 0.5; ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animarRed);
+        }
+        animarRed();
+
+        // --- ENRUTAMIENTO GENERAL ---
+        const telOficial = "527471060076";
+        const mailOficial = "Christhianr700@gmail.com";
+
+        const msgWhatsAppPredeterminado = encodeURIComponent("Saludos. Solicito información técnica sobre el catálogo de software y algoritmos de inyección de Network Veloce.");
+        const urlWhatsAppBase = `https://wa.me/${telOficial}?text=${msgWhatsAppPredeterminado}`;
+        const urlMail = `mailto:${mailOficial}?subject=Solicitud%20de%20Informacion%20Manual&body=Saludos.%20Requiero%20detalles%20de%20desarrollo.`;
+
+        document.querySelectorAll('.enlace-whatsapp-global').forEach(el => el.href = urlWhatsAppBase);
+        document.querySelectorAll('.enlace-correo-global').forEach(el => el.href = urlMail);
+
+        // --- SWITCH FORMULARIO ---
+        function alternarModoFormulario() {
+            const manualActivo = document.getElementById('switch-modo-manual').checked;
+            const modAuto = document.getElementById('modulo-automatico');
+            const modManual = document.getElementById('modulo-manual');
+
+            if(manualActivo) {
+                modAuto.classList.remove('activo');
+                modManual.classList.add('activo');
+            } else {
+                modManual.classList.remove('activo');
+                modAuto.classList.add('activo');
+            }
+        }
+
+        // --- FORMULARIO SUBMIT FIXED ---
+        function enviarDatosAWhatsApp(event) {
+            event.preventDefault(); 
+            const nombre = document.getElementById('nombre-cliente').value;
+            const manualActivo = document.getElementById('switch-modo-manual').checked;
+            const consensoCheck = document.getElementById('consenso-legal').checked;
+
+            if(!consensoCheck) {
+                alert("⚠️ Validación: Debe marcar la casilla de aceptación de términos.");
+                return;
+            }
+
+            let servicioSeleccionado = "";
+            let modoRegistro = "";
+
+            if (manualActivo) {
+                modoRegistro = "MANUAL PERSONALIZADO";
+                servicioSeleccionado = document.getElementById('servicio-manual-texto').value;
+                if(!servicioSeleccionado || !servicioSeleccionado.trim()) {
+                    alert("Por favor describa el servicio manual requerido.");
+                    return;
+                }
+            } else {
+                modoRegistro = "SELECCIÓN AUTOMÁTICA";
+                // SOLUCIÓN AL BUG: El ID del select ya coincide perfectamente con el DOM ('servicio-arquitectura')
+                servicioSeleccionado = document.getElementById('servicio-arquitectura').value;
+            }
+
+            const textoMensaje = 
+                `⚡ *SOLICITUD DE INFRAESTRUCTURA - NETWORK VELOCE*\n\n` +
+                `👤 *Cliente:* ${nombre.toUpperCase()}\n` +
+                `⚙️ *Modelo:* ${modoRegistro}\n` +
+                `📋 *Requerimiento:* ${servicioSeleccionado}\n\n` +
+                `💼 _Términos y Condiciones Aceptados de Conformidad._`;
+
+            window.open(`https://wa.me/${telOficial}?text=${encodeURIComponent(textoMensaje)}`, '_blank');
+        }
+
+        function solicitarPlanWhatsApp(nombrePlan) {
+            const textoPlan = 
+                `⚡ *INTERÉS EN PLAN CORPORATIVO - NETWORK VELOCE*\n\n` +
+                `🏆 *Estructura Comercial Seleccionada:* ${nombrePlan}\n\n` +
+                `🤝 _Solicito detalles técnicos, cotización formal y plazos de despliegue._`;
+            
+            window.open(`https://wa.me/${telOficial}?text=${encodeURIComponent(textoPlan)}`, '_blank');
+        }
+
+        // --- LEGAL ACORDEÓN ---
+        function toggleAcordeonLegal(elemento) {
+            elemento.classList.toggle('activo');
+        }
+
+        // --- NAVBAR MOBILE ---
+        const menuIcono = document.getElementById('menu-icono');
+        const navModulos = document.getElementById('nav-modulos');
+        menuIcono.addEventListener('click', () => {
+            navModulos.classList.contains('abierto') ? navModulos.classList.remove('abierto') : navModulos.classList.add('abierto');
+            menuIcono.className = navModulos.classList.contains('abierto') ? "fa-solid fa-xmark hamburguesa" : "fa-solid fa-bars-staggered hamburguesa";
+        });
+    </script>
+</body>
+</html>
