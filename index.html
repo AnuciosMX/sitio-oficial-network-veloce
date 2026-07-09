@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Network Veloce Enterprise | Global Software Architecture</title>
+    <!-- Icono de la pestaña (Favicon) con temática de Red/Cubo -->
+    <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=32&h=32&fit=crop">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -75,7 +77,7 @@
             height: 100%;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
             overflow: hidden;
-            padding: 1.5px; /* Borde más fino y nítido */
+            padding: 1.5px;
             transition: transform 0.3s cubic-bezier(0.1, 0.9, 0.2, 1), box-shadow 0.3s ease;
         }
         
@@ -85,13 +87,12 @@
             filter: brightness(1.15);
         }
         
-        /* Animación ultra fluida de la serpiente neón */
         .contenedor-serpiente::before {
             content: '';
             position: absolute;
             top: -60%; left: -60%; width: 220%; height: 220%;
             background: conic-gradient(transparent, var(--neon-alpha), transparent 30%, var(--neon-beta), transparent 60%, var(--neon-gamma), transparent 90%);
-            animation: rotacionFluidaSerpiente 4s linear infinite; /* Más rápido y continuo para fluidez */
+            animation: rotacionFluidaSerpiente 4s linear infinite;
             z-index: -2;
             will-change: transform;
         }
@@ -194,10 +195,10 @@
         }
         .btn-download-3d:active { box-shadow: 0 1px 0 #80002a, 0 3px 8px rgba(255, 0, 85, 0.15); }
 
-        /* --- IMÁGENES DE SERVICIOS --- */
+        /* --- IMÁGENES DE SERVICIOS Y PLANES --- */
         .preview-servicio-img {
             width: 100%;
-            height: 140px;
+            height: 150px;
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 18px;
@@ -237,13 +238,14 @@
             display: flex; flex-direction: column; align-items: center;
         }
         .foto-perfil-reemplazo {
-            width: 100px; height: 100px; border-radius: 50%;
-            border: 2px solid var(--neon-alpha); box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
-            margin-bottom: 20px; background: radial-gradient(circle, #0b0d14 0%, #020204 100%);
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 3px solid var(--neon-alpha); box-shadow: 0 0 25px rgba(0, 240, 255, 0.4);
+            margin-bottom: 20px; background: #000;
             display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
         }
-        .foto-perfil-reemplazo i {
-            font-size: 2.5rem; color: var(--neon-alpha); text-shadow: 0 0 10px var(--neon-alpha);
+        .foto-perfil-reemplazo img {
+            width: 100%; height: 100%; object-fit: cover;
         }
         .badge-creador h3 { font-family: var(--font-display); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
 
@@ -345,7 +347,6 @@
         .tarjeta-red h4 { font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 6px; }
         .tarjeta-red p { font-size: 0.8rem; color: #64748b; margin-bottom: 15px; min-height: 45px; }
         
-        /* BOTONES DE SEGUIR ULTRA ULTRA PEQUEÑOS Y FINOS SÓLO TEXTO */
         .btn-red-reducido { 
             padding: 6px 14px !important; 
             font-size: 0.65rem !important; 
@@ -429,26 +430,42 @@
     <section id="inicio">
         <div class="contenedor hero-estructura">
             <div>
-                <span class="hero-tag">⚡ Enterprise Architecture</span>
-                <h1>Sistemas y Desarrollos de web internacional</h1>
-                <p>Especialistas en la creación y despliegue de infraestructuras de código de alta velocidad. Maximizamos el rendimiento corporativo a través de aplicaciones de élite adaptadas a tu hardware.</p>
-                <a href="#contacto" class="btn-premium">SOLICITAR<i class="fa-solid fa-sliders"></i></a>
+                <span class="hero-tag">⚡ Enterprise Architecture By Christhian </span>
+                <h1>Sistemas y Desarrollos de web internacional 🦅</h1>
+                <p>Especialistas en la creacion de paginas webs y apps para tu comodidad adaptadas a tu hardware y a tu presupuesto.</p>
+                <a href="#contacto" class="btn-premium">SOLICITAR MI PAGINA WEB O APP<i class="fa-solid fa-sliders"></i></a>
             </div>
             <div class="badge-creador">
                 <div class="foto-perfil-reemplazo">
-                    <i class="fa-solid fa-user-gear"></i>
+                    <!-- Tu Nueva Imagen de Perfil Integrada de ImgBB -->
+                    <img src="https://i.ibb.co/8F2rDSM/1783279157522.png" alt="Logo Perfil Network Veloce">
                 </div>
                 <h3>Creador Web Autorizado</h3>
-                <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">Garantía de Código Estricto por Christian A.RAMOS.</p>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">
+​No solo creamos sitios web  diseñamos la infraestructura digital que hace crecer tu visión. 
+<span class="hero-tag">​Si lo puedes imaginar, lo podemos programar.</span> Cristian A. 👑</p>
             </div>
-        </div>
+            <h3><span class="hero-tag">⚡Tu Idea, Nuestro Código </span></h3>
+                <p style="font-size: 0.85rem; color: #64748b; margin-top: 5px;">
+Transformamos tus ideas en soluciones digitales de alto impacto.
+​No solo desarrollamos aplicaciones, creamos experiencias que tus usuarios amarán.
+​Soluciones a medida: porque tu negocio no es igual a los demás.
+​Expertos en convertir problemas complejos en aplicaciones simples y efectivas.
+​¿Tienes una idea? Nosotros tenemos el código. ¡Hagámoslo realidad!
+​Optimiza tu tiempo y escala tu negocio con tecnología diseñada para ti.
+​Creamos herramientas únicas para metas únicas.
+​Desarrollo de calidad garantizado en cada línea de código.
+​Apps que conectan, herramientas que venden.
+​Tu visión es el punto de partida; nuestra tecnología es el camino.
+<span class="hero-tag">​UN SITIO WEB NO ES UN GASTO ES UNA INVERSION.</span> Cristian A. 👑</p>
+            </div>
     </section>
 
     <section id="contacto">
         <div class="contenedor">
             <div class="seccion-header">
                 <p>has de tu negocio un sitio web completo</p>
-                <h2>Solicitar <span>Servicios</span></h2>
+                <h2>Solicitar <span>Servicios</span> 📱</h2>
             </div>
             <div class="contacto-grid">
                 
@@ -459,20 +476,20 @@
                     <div class="caja-enlace-directo">
                         <div class="contenedor-serpiente" style="width: 100%;">
                             <div class="capa-interna bloque-canal">
-                                <h5><i class="fa-brands fa-whatsapp"></i> WhatsApp OFICIAL</h5>
-                                <p>comunicación privada cifrada.</p>
+                                <h5><i class="fa-brands fa-whatsapp"></i> WhatsApp OFICIAL 🟢</h5>
+                                <p>comunicación privada cifrada de inmediato.</p>
                                 <a href="#" class="btn-premium btn-contacto-3d enlace-whatsapp-global" target="_blank">
-                                    <i class="fa-solid fa-comment-dots"></i> Solicitar Información 
+                                    <i class="fa-solid fa-comment-dots"></i> Solicitar Información 💬
                                 </a>
                             </div>
                         </div>
 
                         <div class="contenedor-serpiente" style="width: 100%;">
                             <div class="capa-interna bloque-canal">
-                                <h5><i class="fa-solid fa-envelope"></i> Correo Electrónico</h5>
-                                <p> contractuales y firmas técnicas.</p>
+                                <h5><i class="fa-solid fa-envelope"></i> Correo Electrónico 🔵</h5>
+                                <p>contractuales y firmas técnicas directas.</p>
                                 <a href="#" class="btn-premium btn-correo-3d enlace-correo-global">
-                                    <i class="fa-solid fa-paper-plane"></i> Pedir Información
+                                    <i class="fa-solid fa-paper-plane"></i> Pedir Información ✉️
                                 </a>
                             </div>
                         </div>
@@ -482,12 +499,12 @@
                 <div class="contenedor-serpiente">
                     <form class="capa-interna formulario-b2b" onsubmit="enviarDatosAWhatsApp(event)">
                         <div class="campo-grupo">
-                            <label><i class="fa-solid fa-user-tie"></i> Nombre Completo del Cliente</label>
+                            <label><i class="fa-solid fa-user-tie"></i> Nombre Completo </label>
                             <input type="text" id="nombre-cliente" class="entrada-texto" required placeholder="Ej. Ing. Christian A Ramos">
                         </div>
 
                         <div class="contenedor-switch-modo">
-                            <span>Modo de Entrada Personalizado</span>
+                            <span>Tienes una idea activalo y compartenos tu proyecto 🛠️</span>
                             <label class="control-switch">
                                 <input type="checkbox" id="switch-modo-manual" onchange="alternarModoFormulario()">
                                 <span class="slider-switch"></span>
@@ -498,10 +515,10 @@
                             <div class="campo-grupo">
                                 <label><i class="fa-solid fa-cubes"></i> Infraestructura de Software Requerida</label>
                                 <select id="servicio-arquitectura" class="desplegable-corporativo">
-                                    <option value="Solo Plataforma Web Corporativa">Solo Plataforma Web Corporativa</option>
-                                    <option value="Solo Aplicación Móvil Nativa">Solo Aplicación Móvil Nativa</option>
-                                    <option value="Creación de Apps Fake Lag + Anti-Ban (Free Fire)">Creación de Apps Fake Lag + Anti-Ban (Free Fire)</option>
-                                    <option value="Infraestructura Híbrida Completa (Web + Móvil + Optimizadores)">fake lag optimizado sin ban</option>
+                                    <option value="Solo Plataforma Web Corporativa">Solo Plataforma Web Corporativa 🌐</option>
+                                    <option value="Solo Aplicación Móvil Nativa Android">Solo Aplicación Móvil Nativa (Puro Android) 🤖</option>
+                                    <option value="Creación de Apps Fake Lag + Anti-Ban (Free Fire)">Creación de Apps Fake Lag + Anti-Ban (Free Fire) 🎮</option>
+                                    <option value="Infraestructura Híbrida Completa (Web + Móvil + Optimizadores)">fake lag optimizado sin ban 🔥</option>
                                 </select>
                             </div>
                         </div>
@@ -518,7 +535,7 @@
                             <label for="consenso-legal">Acepto la totalidad de los <a href="#legal">Términos de Servicio</a> y las <a href="#legal">Políticas de Privacidad</a> globales de la empresa.</label>
                         </div>
 
-                        <button type="submit" class="btn-premium" style="width: 100%;"><i class="fa-brands fa-whatsapp"></i> ACEPTAR </button>
+                        <button type="submit" class="btn-premium" style="width: 100%;"><i class="fa-brands fa-whatsapp"></i> ACEPTAR ⚡</button>
                     </form>
                 </div>
 
@@ -530,13 +547,15 @@
         <div class="contenedor">
             <div class="seccion-header">
                 <p>Estructura Comercial</p>
-                <h2>Modelos y <span>Planes de Distribución</span></h2>
+                <h2>Modelos y <span>Planes de Distribución</span> 📊</h2>
             </div>
             <div class="planes-grid">
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-plan">
+                        <!-- Imagen Plan 1 -->
+                        <img src="https://i.ibb.co/fzHMwd7D/IMG-20260705-WA0004.jpg" alt="Plan Esencial Tech" class="preview-servicio-img">
                         <div class="plan-encabezado">
-                            <h4>Básico</h4>
+                            <h4>Básico WEB 💼</h4>
                             <div class="plan-precio">Esencial Tech</div>
                         </div>
                         <ul class="plan-caracteristicas">
@@ -544,27 +563,31 @@
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Desarrollo Web Corporativo Base</li>
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Optimización Estándar de Sistema</li>
                         </ul>
-                        <button onclick="solicitarPlanWhatsApp('Esencial Tech (Básico)')" class="btn-premium" style="width:100%;">Configurar Solución</button>
+                        <button onclick="solicitarPlanWhatsApp('Esencial Tech (Básico)')" class="btn-premium" style="width:100%;">Configurar Solución ✨</button>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-plan">
+                        <!-- Imagen Plan 2 -->
+                        <img src="https://i.ibb.co/qLRJjy1W/IMG-20260705-WA0006.jpg" alt="Plan Veloce Pro" class="preview-servicio-img">
                         <div class="plan-encabezado">
-                            <h4>Avanzado</h4>
-                            <div class="plan-precio">Veloce Pro</div>
+                            <h4>Avanzado WEB 🚀</h4>
+                            <div class="plan-precio">PERSONALIZADO</div>
                         </div>
                         <ul class="plan-caracteristicas">
-                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Arquitectura Web + App Móvil Base</li>
+                            <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Arquitectura Web + App Android</li>
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Reducción Avanzada de Latencia</li>
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Scripts y Automatizaciones a Medida</li>
                         </ul>
-                        <button onclick="solicitarPlanWhatsApp('Veloce Pro (Avanzado)')" class="btn-premium" style="width:100%;">Configurar Solución</button>
+                        <button onclick="solicitarPlanWhatsApp('Veloce Pro (Avanzado)')" class="btn-premium" style="width:100%;">Configurar Solución 💻</button>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-plan">
+                        <!-- Imagen Plan 3 -->
+                        <img src="https://i.ibb.co/RGYFpxRb/IMG-20260705-WA0007.jpg" alt="Plan Bypass Core" class="preview-servicio-img">
                         <div class="plan-encabezado">
-                            <h4>Gamer Lite</h4>
+                            <h4> FAKE LAG LITE 🎯</h4>
                             <div class="plan-precio">Bypass Core (FF)</div>
                         </div>
                         <ul class="plan-caracteristicas">
@@ -572,21 +595,23 @@
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Inyección Básica por Archivos OBB</li>
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Protección Anti-Ban por Parcheo Local</li>
                         </ul>
-                        <button onclick="solicitarPlanWhatsApp('Bypass Core (Gamer Lite FF)')" class="btn-premium" style="width:100%;">Configurar Solución</button>
+                        <button onclick="solicitarPlanWhatsApp('Bypass Core (Gamer Lite FF)')" class="btn-premium" style="width:100%;">Configurar Solución 🎮</button>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-plan">
+                        <!-- Imagen Plan 4 -->
+                        <img src="https://i.ibb.co/p6r6LQZr/IMG-20260705-WA0008.jpg" alt="Plan Veloce Brutal" class="preview-servicio-img">
                         <div class="plan-encabezado">
-                            <h4>Elite Gamer</h4>
-                            <div class="plan-precio">Veloce Brutal (FF)</div>
+                            <h4>FAKE LAG VIP🏆</h4>
+                            <div class="plan-precio"> PERSONALIZADO(FF)</div>
                         </div>
                         <ul class="plan-caracteristicas">
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Panel Inyector APK Mod con Anti-Ban</li>
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Fake Lag Automatizado por Ticks de Red</li>
                             <li><div class="lista-check-icono"><i class="fa-solid fa-check"></i></div> Limpieza de Logs y Bypass de Reportes</li>
                         </ul>
-                        <button onclick="solicitarPlanWhatsApp('Veloce Brutal (Elite Gamer FF)')" class="btn-premium" style="width:100%;">Configurar Solución</button>
+                        <button onclick="solicitarPlanWhatsApp('Veloce Brutal (Elite Gamer FF)')" class="btn-premium" style="width:100%;">Configurar Solución 🔥</button>
                     </div>
                 </div>
             </div>
@@ -597,38 +622,38 @@
         <div class="contenedor">
             <div class="seccion-header">
                 <p>Catálogo Operativo Avanzado</p>
-                <h2>Módulos de Desarrollo e <span>Inyección de Red</span></h2>
+                <h2>Módulos de Desarrollo e <span>Inyección de Red</span> ⚡</h2>
             </div>
             <div class="soluciones-grid">
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-info">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Websites" class="preview-servicio-img">
+                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&fit=crop" alt="Páginas Web Corporativas" class="preview-servicio-img">
                         <div class="contenedor-icono-redondo"><i class="fa-solid fa-globe"></i></div>
-                        <h3>Páginas Web Corporativas</h3>
+                        <h3>Páginas Web Corporativas 🌐</h3>
                         <p>Diseños responsivos integrados con micro-optimizaciones logísticas de carga y posicionamiento SEO avanzado de estructura limpia.</p>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-info">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80" alt="Mobile Apps" class="preview-servicio-img">
-                        <div class="contenedor-icono-redondo"><i class="fa-solid fa-mobile-screen"></i></div>
-                        <h3>Aplicaciones Móviles Nativas</h3>
-                        <p>Desarrollo enfocado en flujos transaccionales óptimos, escalamiento cloud y lógicas de backend robustas para entornos iOS y Android.</p>
+                        <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?w=500&fit=crop" alt="Aplicaciones Móviles Android" class="preview-servicio-img">
+                        <div class="contenedor-icono-redondo"><i class="fa-brands fa-android" style="color: #3ddc84;"></i></div>
+                        <h3>Aplicaciones Móviles Nativas 🤖</h3>
+                        <p>Desarrollo especializado y structured <strong>únicamente para el sistema operativo Android</strong>. Código de alto rendimiento nativo.</p>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-info">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80" alt="Gaming Network" class="preview-servicio-img">
+                        <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=500&fit=crop" alt="Desincronización Fake Lag" class="preview-servicio-img">
                         <div class="contenedor-icono-redondo"><i class="fa-solid fa-bolt"></i></div>
-                        <h3>Desincronización Fake Lag (FF)</h3>
+                        <h3>Desincronización Fake Lag (FF) 🎮</h3>
                         <p>Lógica de red orientada a la manipulación de ticks de paquetes UDP enviados al servidor, simulando latencia artificial controlada e indetectable.</p>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-info">
-                        <img src="https://images.unsplash.com/photo-1563206767-5b18f218e8de?auto=format&fit=crop&w=400&q=80" alt="Security Security" class="preview-servicio-img">
+                        <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=500&fit=crop" alt="Módulos Criptográficos Anti-Ban" class="preview-servicio-img">
                         <div class="contenedor-icono-redondo"><i class="fa-solid fa-user-shield"></i></div>
-                        <h3>Módulos Criptográficos Anti-Ban</h3>
+                        <h3>Módulos Criptográficos Anti-Ban 🛡️</h3>
                         <p>Despliegue de scripts con bypass de firmas digitales y emulación de memoria en tiempo de ejecución para evitar detecciones heurísticas del motor del juego.</p>
                     </div>
                 </div>
@@ -639,29 +664,29 @@
     <section id="descargas">
         <div class="contenedor">
             <div class="seccion-header">
-                <p>Fake lag gratis de prueba </p>
-                <h2>Descarga e <span>Instala y Prueba </span></h2>
+                <p>Fake lag gratis de prueba</p>
+                <h2>Descarga e <span>Instala y Prueba</span> 📥</h2>
             </div>
             <div class="descargas-grid">
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-descarga">
                         <div>
-                            <h3><i class="fa-solid fa-box-archive"></i> NUESTRA APP ESTA EN DESARROLLO</h3>
+                            <h3><i class="fa-solid fa-box-archive"></i> NUESTRA APP ESTA EN DESARROLLO 🛠️</h3>
                             <p>Acceso al paquete compilado de Web Apps corporativas, paneles optimizadores y scripts de depuración de rendimiento.</p>
                         </div>
                         <a href="https://www.mediafire.com/folder/rkgh8o43xm88n/Network+web+site" class="btn-premium btn-download-3d" target="_blank">
-                            <i class="fa-solid fa-cloud-arrow-down"></i> DONWLOAD 
+                            <i class="fa-solid fa-cloud-arrow-down"></i> DOWNLOAD 📁
                         </a>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-descarga">
                         <div>
-                            <h3><i class="fa-solid fa-gamepad"></i> FAKE LAG GRATIS DE PRUEBA</h3>
+                            <h3><i class="fa-solid fa-gamepad"></i> FAKE LAG GRATIS DE PRUEBA 👾</h3>
                             <p>Descarga del inyector apk modificado optimizado para Free Fire, configuraciones fake lag avanzadas y scripts bypass optimizados DE PRUEBA TEST.</p>
                         </div>
                         <a href="https://linktr.ee/xMclovinMods?utm_source=linktree_profile_share&ltsid=865ad72a-e5ef-4b0c-beec-6baee452ed92" class="btn-premium btn-download-3d" target="_blank">
-                            <i class="fa-solid fa-gamepad"></i> DONWLOAD
+                            <i class="fa-solid fa-gamepad"></i> DOWNLOAD 🎮
                         </a>
                     </div> 
                 </div>
@@ -672,37 +697,37 @@
     <section id="redes-oficiales">
         <div class="contenedor">
             <div class="seccion-header">
-                <p>CANALES OFICIALES </p>
-                <h2>Comunidad &<span>Redes Oficiales</span></h2>
+                <p>CANALES OFICIALES</p>
+                <h2>Comunidad &<span>Redes Oficiales</span> 👥</h2>
             </div>
             <div class="redes-grid">
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-red">
                         <i class="fa-brands fa-telegram icono-tg"></i>
-                        <h4>Telegram Oficial</h4>
+                        <h4>Telegram Oficial ✈️</h4>
                         <p>Únete para soporte exclusivo y configuraciones de red directas.</p>
                         <a href="https://t.me/+3MQ7fkTJPn5mNDZh" class="btn-premium btn-red-reducido" style="background: linear-gradient(180deg, #0088cc 0%, #006699 100%); box-shadow: 0 2px 0 #004466;" target="_blank">
-                            Unirse
+                            Unirse 📱
                         </a>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-red">
                         <i class="fa-brands fa-tiktok icono-tk"></i>
-                        <h4>TikTok oficial</h4>
+                        <h4>TikTok oficial 🎵</h4>
                         <p>Sigue la pagina.</p>
                         <a href="https://www.tiktok.com/@cris.floow?_r=1&_t=ZS-97s77VlN21p" class="btn-premium btn-red-reducido" style="background: linear-gradient(180deg, #00f2fe 0%, #4facfe 100%); box-shadow: 0 2px 0 #00a2cc; color: #000;" target="_blank">
-                            Seguir
+                            Seguir 👥
                         </a>
                     </div>
                 </div>
                 <div class="contenedor-serpiente">
                     <div class="capa-interna tarjeta-red">
                         <i class="fa-brands fa-youtube icono-yt"></i>
-                        <h4>YouTube Oficial</h4>
+                        <h4>YouTube Oficial 🎬</h4>
                         <p>Video tutoriales de inyección estructural y guías de código.</p>
                         <a href="https://youtube.com/@xmclovin7049?si=ctdVN467k7Pwf3of" class="btn-premium btn-red-reducido" style="background: linear-gradient(180deg, #ff0000 0%, #cc0000 100%); box-shadow: 0 2px 0 #990000;" target="_blank">
-                            suscribirse
+                            Suscribirse 🔔
                         </a>
                     </div>
                 </div>
@@ -716,7 +741,7 @@
                 
                 <div class="columna-legal" onclick="toggleAcordeonLegal(this)">
                     <h4>
-                        <div><i class="fa-solid fa-scroll icono-principal"></i> terminos y condiciones </div>
+                        <div><i class="fa-solid fa-scroll icono-principal"></i> Términos y Condiciones 📄</div>
                         <i class="fa-solid fa-chevron-down flecha-toggle"></i>
                     </h4>
                     <div class="texto-legal-desplegable">
@@ -726,24 +751,24 @@
 
                 <div class="columna-legal" onclick="toggleAcordeonLegal(this)">
                     <h4>
-                        <div><i class="fa-solid fa-shield-halved icono-principal"></i> Políticas de Privacidad</div>
+                        <div><i class="fa-solid fa-shield-halved icono-principal"></i> Políticas de Privacidad 🔒</div>
                         <i class="fa-solid fa-chevron-down flecha-toggle"></i>
                     </h4>
                     <div class="texto-legal-desplegable">
-                        <p>En estricto cumplimiento con las normas internacionales de protección de datos informáticos, garantizamos que toda la información enviada mediante nuestros canales estructurados permanezca en absoluta confidencialidad. Los detalles de infraestructura, requisitos de hardware o scripts de red solicitados no son indexados en servidores públicos.</p>
+                        <p>En estricto cumplimiento con las normas internacionales de protección de datos informáticos, garantizamos que toda la información enviada mediante nuestros canales estruturados permanezca en absoluta confidencialidad. Los detalles de infraestructura, requisitos de hardware o scripts de red solicitados no son indexados en servidores públicos.</p>
                     </div>
                 </div>
 
                 <div class="columna-legal" onclick="toggleAcordeonLegal(this)">
                     <h4>
-                        <div><i class="fa-solid fa-address-book icono-principal"></i> Canales de Verificación</div>
+                        <div><i class="fa-solid fa-address-book icono-principal"></i> Canales de Verificación 🛡️</div>
                         <i class="fa-solid fa-chevron-down flecha-toggle"></i>
                     </h4>
                     <div class="texto-legal-desplegable">
-                        <p>Para revisiones de acuerdos de confidencialidad de datos (NDA), escalamiento inmediato de proyectos críticos o consultas directas de desarrollo, puede abrir accesos rápidos de respaldo de inmediato:</p>
+                        <p>Para revisiones de acuerdos de confidencialidad de datos (NDA), escalamiento inmediato de proyectos críticos o consultas directas de desarrollo, puede abrir accesos rápidos de respaldo de inmediato de forma externa y segura:</p>
                         <div style="display: flex; gap: 16px; margin-top: 15px;">
-                            <a href="#" class="btn-premium btn-contacto-3d enlace-whatsapp-global" target="_blank" style="padding: 10px 20px;"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
-                            <a href="#" class="btn-premium btn-correo-3d enlace-correo-global" style="padding: 10px 20px;"><i class="fa-solid fa-envelope"></i> Correo</a>
+                            <a href="#" class="btn-premium btn-contacto-3d enlace-whatsapp-global" target="_blank" style="padding: 10px 20px;"><i class="fa-brands fa-whatsapp"></i> WhatsApp 🟢</a>
+                            <a href="#" class="btn-premium btn-correo-3d enlace-correo-global" style="padding: 10px 20px;"><i class="fa-solid fa-envelope"></i> Correo 🔵</a>
                         </div>
                     </div>
                 </div>
@@ -754,7 +779,7 @@
 
     <footer>
         <div class="contenedor">
-            <p>&copy; 2026 <span>Network Veloce</span> Enterprise. Todos los derechos reservados. Arquitectura y Supervisión Técnica por el Creador Web Autorizado <span>BY Christian A. RAMOS.</p>
+            <p>&copy; 2026 <span>Network Veloce</span> Enterprise. Todos los derechos reservados. Arquitectura y Supervisión Técnica por el Creador Web Autorizado <span>BY Christian A. RAMOS. 🦅</span></p>
         </div>
     </footer>
 
@@ -808,7 +833,7 @@
                     const distancia = Math.sqrt(dx * dx + dy * dy);
                     if (distancia < maxDistancia) {
                         ctx.beginPath(); ctx.moveTo(particulas[i].x, particulas[i].y);
-                        ctx.lineTo(particulas[j].x, particles = particulas[j].y);
+                        ctx.lineTo(particulas[j].x, particulas[j].y);
                         ctx.strokeStyle = `rgba(0, 240, 255, ${1 - (distancia / maxDistancia)})`;
                         ctx.lineWidth = 0.5; ctx.stroke();
                     }
@@ -868,7 +893,6 @@
                 }
             } else {
                 modoRegistro = "SELECCIÓN AUTOMÁTICA";
-                // SOLUCIÓN AL BUG: El ID del select ya coincide perfectamente con el DOM ('servicio-arquitectura')
                 servicioSeleccionado = document.getElementById('servicio-arquitectura').value;
             }
 
@@ -893,6 +917,7 @@
 
         // --- LEGAL ACORDEÓN ---
         function toggleAcordeonLegal(elemento) {
+            if (event.target.closest('a') || event.target.closest('button')) return;
             elemento.classList.toggle('activo');
         }
 
